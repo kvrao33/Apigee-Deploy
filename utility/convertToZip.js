@@ -1,9 +1,10 @@
 const fs = require('fs');
 const archiver = require('archiver');
+const path = require('path');
 
 function convertToZip(folderPath) {
   return new Promise((resolve, reject) => {
-    const zipPath = folderPath + '.zip';
+    const zipPath = path.join(__dirname, '..', 'zippedfile.zip');
 
     const output = fs.createWriteStream(zipPath);
     const archive = archiver('zip', { zlib: { level: 9 } });
@@ -19,10 +20,13 @@ function convertToZip(folderPath) {
     archive.pipe(output);
     archive.directory(folderPath, false);
     archive.finalize();
+  })
+  .then((zipPath) => {
+    return zipPath;
+  })
+  .catch((error) => {
+    throw error;
   });
 }
 
-// Example usage
-
-
-module.exports = convertToZip
+module.exports = convertToZip;

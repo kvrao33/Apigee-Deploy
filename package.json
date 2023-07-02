@@ -4,7 +4,7 @@
   "description": "deploy the api proxy",
   "main": "index.js",
   "bin": {
-    "apigee-deploy": "./index.js"
+    "apigee-deploy": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +16,25 @@
     "archiver": "^5.3.1",
     "axios": "^1.4.0",
     "commander": "^11.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvrao33/Apigee-Deploy.git"
+  },
+  "keywords": [
+    "apigee",
+    "apigeex",
+    "apigee",
+    "edge",
+    "deployee",
+    "apigee",
+    "apigee",
+    "proxy",
+    "proxies"
+  ],
+  "bugs": {
+    "url": "https://github.com/kvrao33/Apigee-Deploy/issues"
+  },
+  "homepage": "https://github.com/kvrao33/Apigee-Deploy#readme"
 }

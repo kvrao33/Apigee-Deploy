@@ -1,6 +1,5 @@
 const program = require('commander');
-const convertToZip = require('./utility/convertToZip');
-
+const proxyDeploy = require('./main');
 
 program
   .arguments('<path>')
@@ -11,18 +10,11 @@ program
   .requiredOption('-p, --proxy <proxy>', 'Specify the proxy name')
   .action((path, options) => {
     const { resource, token, organization, environment, proxy } = options;
-    // console.log(`Deployment complete! Path: ${path}, Resource: ${resource}, Token: ${token}, Organization: ${organization}, Environment: ${environment}, Proxy: ${proxy}`);
-    convertToZip(path)
-    .then((zipPath) => {
-      console.log('Folder converted to zip:', zipPath);
-    })
-    .catch((error) => {
-      console.error('Error converting folder to zip:', error);
-    }); 
-})
+
+    proxyDeploy(path,token, organization, environment, proxy)
+  })
   .parse(process.argv);
 
 if (!program.args.length) {
   program.help();
 }
-
