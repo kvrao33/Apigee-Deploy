@@ -1,0 +1,20 @@
+{
+  "name": "apigee-deploy",
+  "version": "1.0.0",
+  "description": "deploy the api proxy",
+  "main": "index.js",
+  "bin": {
+    "apigee-deploy": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-zip": "node utility/convertToZip.js"
+  },
+  "author": "K V Rao",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "axios": "^1.4.0",
+    "commander": "^11.0.0"
+  }
+}
