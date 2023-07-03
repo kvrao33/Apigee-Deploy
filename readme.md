@@ -1,24 +1,23 @@
-Certainly! Here's the README file content in Markdown format:
 
-```markdown
 # Apigee Deployment Utility
 
-This utility script automates the deployment process for Apigee proxies. It allows you to convert a folder to a zip file, import the API to Apigee, and deploy the proxy revision. It simplifies the deployment workflow and helps streamline the deployment process.
+The Apigee Deployment Utility is a script that automates the deployment process for Apigee proxies. It allows you to convert a folder to a zip file, import the API to Apigee, and deploy the proxy revision. This utility simplifies the deployment workflow and helps streamline the deployment process.
 
 ## Prerequisites
 
-Before using this utility, ensure that you have the following installed:
+Before using this utility, make sure you have the following prerequisites:
 
 - Node.js (version X.X.X or higher)
 - NPM (Node Package Manager)
 
 ## Installation
 
+Follow the steps below to install and set up the utility:
+
 1. Clone the repository:
 
    ```bash
    git clone https://github.com/your-username/apigee-deployment-utility.git
-   ```
 
 2. Navigate to the project directory:
 
