@@ -46,4 +46,6 @@ function proxyDeploy(path,token, organization, environment, proxy ){
       });
 }
 
-module.exports=proxyDeploy
+module.exports = {
+    proxyDeploy
+  };

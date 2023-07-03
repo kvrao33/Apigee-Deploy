@@ -1,75 +1,90 @@
 
-# Apigee Deployment Utility
+# apigee-deploy
 
-The Apigee Deployment Utility is a script that automates the deployment process for Apigee proxies. It allows you to convert a folder to a zip file, import the API to Apigee, and deploy the proxy revision. This utility simplifies the deployment workflow and helps streamline the deployment process.
-
-## Prerequisites
-
-Before using this utility, make sure you have the following prerequisites:
-
-- Node.js (version X.X.X or higher)
-- NPM (Node Package Manager)
+Deploy API proxies to Apigee Edge.
 
 ## Installation
 
-Follow the steps below to install and set up the utility:
+To use the `apigee-deploy` package as a command-line tool, you need to install it globally. Run the following command to install it:
 
-1. Clone the repository:
+```shell
+npm install -g apigee-deploy
+```
 
-   ```bash
-   git clone https://github.com/your-username/apigee-deployment-utility.git
+This will install the package globally on your system, making it available as a command-line tool.
 
-2. Navigate to the project directory:
+If you want to use the `apigee-deploy` package as a library in your Node.js code, you can install it locally in your project directory using the following command:
 
-   ```bash
-   cd apigee-deployment-utility
-   ```
+```shell
+npm install apigee-deploy
+```
 
-3. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
+Remember to import it appropriately in your code using `require('apigee-deploy')`.
 
 ## Usage
 
-To use the utility, follow these steps:
+### Importing the Package
 
-1. Provide the necessary command-line arguments:
+To use the `apigee-deploy` package in your code, import it as follows:
 
-   ```bash
-   node utility/importApiToApigee.js <path> -r <resource> -t <token> -o <organization> -e <environment> -p <proxy>
-   ```
+```javascript
+const apigee = require("apigee-deploy");
+```
 
-   - `<path>`: The path to the folder containing the API files.
-   - `<resource>`: Specify the resource.
-   - `<token>`: Specify the token.
-   - `<organization>`: Specify the organization.
-   - `<environment>`: Specify the environment.
-   - `<proxy>`: Specify the proxy name.
+### API Usage
 
-2. The utility will convert the folder to a zip file, import the API to Apigee, and deploy the proxy revision.
+To deploy an API proxy using the `proxyDeploy` function, use the following syntax:
 
-3. The utility will provide output messages indicating the status of each step and any errors encountered.
+```javascript
+apigee.proxyDeploy(path, token, organization, environment, proxy);
+```
+
+Replace the following placeholders with your desired values:
+
+- `path`: The path to the API proxy.
+- `token`: The access token for Apigee authentication.
+- `organization`: The name of the Apigee organization.
+- `environment`: The target environment for deploying the API proxy.
+- `proxy`: The name of the API proxy.
+
+### Command Line Usage
+
+You can also use the `apigee-deploy` package from the command line. The command should follow this structure:
+
+```shell
+apigee-deploy [path] -r [resource] -t [token] -o [organization] -p [proxy] -e [environment]
+```
+
+Replace the placeholders with the respective values:
+
+- `path`: The path to the API proxy.
+- `resource`: The type of resource to deploy (e.g., "proxy").
+- `token`: The access token for Apigee authentication.
+- `organization`: The name of the Apigee organization.
+- `proxy`: The name of the API proxy.
+- `environment`: The target environment for deploying the API proxy.
+
+## Examples
+
+### API Usage Example
+
+```javascript
+const apigee = require("apigee-deploy");
+
+apigee.proxyDeploy('/home/user/Downloads/Apigee-CI-CD', 'token', 'apigee-test', 'default-dev', 'Apigee-CI-CD');
+```
+
+### Command Line Usage Example
+
+```shell
+apigee-deploy /home/user/Downloads/Apigee-CI-CD -r proxy -t token -o apigee-test -p Apigee-CI-CD -e default-dev
+```
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## Issues
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+If you encounter any issues or have any questions, please create an issue on the [GitHub repository](https://github.com/kvrao33/Apigee-Deploy/issues).
 
-## Acknowledgements
-
-This utility is built using the following libraries:
-
-- [Axios](https://github.com/axios/axios)
-- [Archiver](https://github.com/archiverjs/node-archiver)
-
-## Contact
-
-For any inquiries or feedback, please contact [your-name](mailto:your-email@example.com).
-```
-
-Copy the above content and save it in a file named `README.md` in your project repository. Feel free to modify the content of the README file based on your specific project details and requirements.

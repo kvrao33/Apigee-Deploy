@@ -1,10 +1,10 @@
 {
   "name": "apigee-deploy",
   "version": "1.0.0",
-  "description": "deploy the api proxy",
+  "description": "Deploy the API proxy",
   "main": "index.js",
   "bin": {
-    "apigee-deploy": "index.js"
+    "apigee-deploy": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,7 @@
   "dependencies": {
     "archiver": "^5.3.1",
     "axios": "^1.4.0",
-    "commander": "^11.0.0"
+    "commander": "^8.1.0"
   },
   "devDependencies": {},
   "repository": {
@@ -25,10 +25,8 @@
   "keywords": [
     "apigee",
     "apigeex",
-    "apigee",
     "edge",
     "deployee",
-    "apigee",
     "apigee",
     "proxy",
     "proxies"
