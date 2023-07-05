@@ -90,4 +90,4 @@ If you encounter any issues or have any questions, please create an issue on the
 
 ## Author
 
-This package was created by [K.V.Rao](https://github.com/author-name).
+This package was created by [K.V.Rao](https://www.linkedin.com/in/karthik-v-rao-404760229).
