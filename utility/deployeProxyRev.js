@@ -3,7 +3,6 @@ const fs = require('fs');
 
 async function deployProxyRev(organization, environment, proxy, rev, token) {
   const apiUrl = `https://apigee.googleapis.com/v1/organizations/${organization}/environments/${environment}/apis/${proxy}/revisions/${rev}/deployments?override=true`;
-
   try {
     const response = await axios.post(apiUrl, null, {
       headers: {

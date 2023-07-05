@@ -17,6 +17,17 @@ const { resource, token, organization, proxy, environment, sharedflow } = progra
 
 if (!path || !resource || !token || !organization || !environment) {
   console.error('Missing required arguments.');
+  if(!resource){
+    console.log("Resource -r not found");
+  }else if(!path){
+    console.log("Path -p not found");
+  }else if(!token){
+    console.log("Token -t not found");
+  }else if(!organization){
+    console.log("Organization -o not found");
+  }else if(!environment){
+    console.log("Environment -e not found");
+  }
   console.log('Usage: apigee-deploy <path> -r <resource> -t <token> -o <organization> -e <environment> [-p <proxy>] [-s <sharedflow>]');
   process.exit(1);
 }

@@ -20,7 +20,8 @@ function proxyDeploy(path, token, organization, environment, proxy) {
               console.log('Proxy deployment successful');
             })
             .catch((err) => {
-              console.log(`Error in deployProxyRev: ${err}`);
+              if(err.response&&err.response.data)
+              console.log(`Error in deployProxyRev: ${err.response.data.error.message}`);
             })
             
         })
