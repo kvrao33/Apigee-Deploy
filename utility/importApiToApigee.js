@@ -1,7 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-
 async function importApiToApigee(filePath, token, organization, proxy) {
   try {
     const form = new FormData();
@@ -21,8 +20,10 @@ async function importApiToApigee(filePath, token, organization, proxy) {
 
     return response.data;
   } catch (error) {
-    if (error.response && error.response.data) {
-      return error.response.data;
+    if (error.response && error.response.status === 401) {
+      throw 'Invalid token or incorrect input'
+    } else if (error.response && error.response.data) {
+      throw error.response.data;
     } else {
       throw error;
     }

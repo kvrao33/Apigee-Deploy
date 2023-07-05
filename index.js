@@ -1,27 +1,40 @@
 #! /usr/bin/env node
-const program = require('commander');
-const { proxyDeploy } = require('./main');
+const { program } = require('commander');
+const {proxyDeploy}=require('./main');
 
 program
   .arguments('<path>')
-  .requiredOption('-r, --resource <resource>', 'Specify the resource')
+  .option('-r, --resource <resource>', 'Specify the resource')
   .option('-t, --token <token>', 'Specify the token')
   .option('-o, --organization <organization>', 'Specify the organization')
   .option('-e, --environment <environment>', 'Specify the environment')
   .option('-p, --proxy <proxy>', 'Specify the proxy name')
-  .action((path, options) => {
-    const { resource, token, organization, environment, proxy } = options;
-
-    if (resource === 'proxy' && (!token || !organization || !environment || !proxy)) {
-      console.error('Missing required options for proxy resource.');
-      program.help();
-      return;
-    }
-
-    proxyDeploy(path, token, organization, environment, proxy);
-  })
+  .option('-s, --sharedflow <sharedflow>', 'Specify the shared flow name')
   .parse(process.argv);
 
-if (!program.resource || !program.args.length) {
-  program.help();
+const path = program.args[0];
+const { resource, token, organization, proxy, environment, sharedflow } = program.opts();
+
+if (!path || !resource || !token || !organization || !environment) {
+  console.error('Missing required arguments.');
+  console.log('Usage: apigee-deploy <path> -r <resource> -t <token> -o <organization> -e <environment> [-p <proxy>] [-s <sharedflow>]');
+  process.exit(1);
+}
+
+if (resource === 'proxy' && !proxy) {
+  console.error('Missing required argument: -p <proxy>');
+  process.exit(1);
+}
+
+if (resource === 'sharedflow' && !sharedflow) {
+  console.error('Missing required argument: -s <sharedflow>');
+  process.exit(1);
+}
+
+if (proxy) {
+  proxyDeploy(path, token, organization, environment, proxy);
+}
+
+if (sharedflow) {
+  console.log('Sharedflow:', sharedflow);
 }
