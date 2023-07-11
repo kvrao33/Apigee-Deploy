@@ -1,6 +1,6 @@
 {
   "name": "apigee-deploy",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Deploy the API proxy",
   "main": "index.js",
   "bin": {

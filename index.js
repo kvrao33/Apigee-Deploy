@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const { program } = require('commander');
-const {proxyDeploy}=require('./main');
+const {proxyDeploy, sharedFlowDeploy}=require('./main');
 
 program
   .arguments('<path>')
@@ -9,11 +9,11 @@ program
   .option('-o, --organization <organization>', 'Specify the organization')
   .option('-e, --environment <environment>', 'Specify the environment')
   .option('-p, --proxy <proxy>', 'Specify the proxy name')
-  .option('-s, --sharedflow <sharedflow>', 'Specify the shared flow name')
+  .option('-s, --sharedFlow <sharedFlow>', 'Specify the shared flow name')
   .parse(process.argv);
 
 const path = program.args[0];
-const { resource, token, organization, proxy, environment, sharedflow } = program.opts();
+const { resource, token, organization, proxy, environment, sharedFlow } = program.opts();
 
 if (!path || !resource || !token || !organization || !environment) {
   console.error('Missing required arguments.');
@@ -28,7 +28,7 @@ if (!path || !resource || !token || !organization || !environment) {
   }else if(!environment){
     console.log("Environment -e not found");
   }
-  console.log('Usage: apigee-deploy <path> -r <resource> -t <token> -o <organization> -e <environment> [-p <proxy>] [-s <sharedflow>]');
+  console.log('Usage: apigee-deploy <path> -r <resource> -t <token> -o <organization> -e <environment> [-p <proxy>] [-s <sharedFlow>]');
   process.exit(1);
 }
 
@@ -37,8 +37,8 @@ if (resource === 'proxy' && !proxy) {
   process.exit(1);
 }
 
-if (resource === 'sharedflow' && !sharedflow) {
-  console.error('Missing required argument: -s <sharedflow>');
+if (resource === 'sharedFlow' && !sharedFlow) {
+  console.error('Missing required argument: -s <sharedFlow>');
   process.exit(1);
 }
 
@@ -46,6 +46,7 @@ if (proxy) {
   proxyDeploy(path, token, organization, environment, proxy);
 }
 
-if (sharedflow) {
-  console.log('Sharedflow:', sharedflow);
+if (sharedFlow) {
+  sharedFlowDeploy(path, token, organization, environment,sharedFlow )
+  console.log('sharedFlow:', sharedFlow);
 }
