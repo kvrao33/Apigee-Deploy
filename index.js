@@ -14,6 +14,7 @@ program
 
 const path = program.args[0];
 const { resource, token, organization, proxy, environment, sharedFlow } = program.opts();
+console.log(resource);
 
 if (!path || !resource || !token || !organization || !environment) {
   console.error('Missing required arguments.');

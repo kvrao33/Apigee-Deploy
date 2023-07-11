@@ -55,12 +55,12 @@ function sharedFlowDeploy(path, token, organization, environment, sharedFlow) {
       console.log('Zip created', zipPath);
 
       // Import API to Apigee
-      importSharedFlowsToApigee(zipPath, token, organization, proxy)
+      importSharedFlowsToApigee(zipPath, token, organization, sharedFlow)
         .then((result) => {
           console.log('API import successful');
 
           // Deploy Proxy Revision
-          deploySharedFlowRev(organization, environment, proxy, result.revision, token)
+          deploySharedFlowRev(organization, environment, sharedFlow, result.revision, token)
             .then((data) => {
               console.log('Proxy deployment successful');
             })
