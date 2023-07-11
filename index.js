@@ -32,12 +32,12 @@ if (!path || !resource || !token || !organization || !environment) {
   process.exit(1);
 }
 
-if (resource === 'proxy' && !proxy) {
+if (resource.toLocaleLowerCase() === 'proxy' && !proxy) {
   console.error('Missing required argument: -p <proxy>');
   process.exit(1);
 }
 
-if (resource === 'sharedFlow' && !sharedFlow) {
+if (resource.toLocaleLowerCase() === 'sharedflow' && !sharedFlow) {
   console.error('Missing required argument: -s <sharedFlow>');
   process.exit(1);
 }
