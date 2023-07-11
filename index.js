@@ -14,7 +14,6 @@ program
 
 const path = program.args[0];
 const { resource, token, organization, proxy, environment, sharedFlow } = program.opts();
-console.log(resource);
 
 if (!path || !resource || !token || !organization || !environment) {
   console.error('Missing required arguments.');
@@ -33,21 +32,24 @@ if (!path || !resource || !token || !organization || !environment) {
   process.exit(1);
 }
 
-if (resource.toLocaleLowerCase() === 'proxy' && !proxy) {
-  console.error('Missing required argument: -p <proxy>');
+if (resource.toLocaleLowerCase() === 'proxy') {
+  if (proxy) {
+    proxyDeploy(path, token, organization, environment, proxy);
+  }else{
+    console.error('Missing required argument: -p <proxy>');
+    process.exit(1);
+  }
+  
+}
+
+if (resource.toLocaleLowerCase() === 'sharedflow') {
+  if (sharedFlow) {
+    sharedFlowDeploy(path, token, organization, environment,sharedFlow )
+  }else{
+    console.error('Missing required argument: -s <sharedFlow>');
   process.exit(1);
+  }
 }
 
-if (resource.toLocaleLowerCase() === 'sharedflow' && !sharedFlow) {
-  console.error('Missing required argument: -s <sharedFlow>');
-  process.exit(1);
-}
 
-if (proxy) {
-  proxyDeploy(path, token, organization, environment, proxy);
-}
 
-if (sharedFlow) {
-  sharedFlowDeploy(path, token, organization, environment,sharedFlow )
-  console.log('sharedFlow:', sharedFlow);
-}

@@ -7,6 +7,7 @@ const deploySharedFlowRev = require('./utility/sharedflow/deploySharedFlowRev');
 
 function proxyDeploy(path, token, organization, environment, proxy) {
   // Convert folder to zip
+  console.log("Running Proxy Deployment");
   convertToZip(path)
     .then((zipPath) => {
       console.log('Zip created', zipPath);
@@ -50,6 +51,7 @@ function proxyDeploy(path, token, organization, environment, proxy) {
 
 function sharedFlowDeploy(path, token, organization, environment, sharedFlow) {
   // Convert folder to zip
+  console.log("Running SharedFlow Deployment");
   convertToZip(path)
     .then((zipPath) => {
       console.log('Zip created', zipPath);
