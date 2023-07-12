@@ -1,7 +1,7 @@
 
 # apigee-deploy
 
-Deploy API proxies to Apigee Edge.
+Deploy API proxies and shared flows to Apigee X or Apigee hybrid.
 
 ## Installation
 
@@ -39,30 +39,45 @@ To deploy an API proxy using the `proxyDeploy` function, use the following synta
 apigee.proxyDeploy(path, token, organization, environment, proxy);
 ```
 
+To deploy a shared flow using the `sharedFlowDeploy` function, use the following syntax:
+
+```javascript
+apigee.sharedFlowDeploy(path, token, organization, environment, sharedFlow);
+```
+
 Replace the following placeholders with your desired values:
 
-- `path`: The path to the API proxy.
+- `path`: The path to the API proxy or shared flow.
 - `token`: The access token for Apigee authentication.
 - `organization`: The name of the Apigee organization.
-- `environment`: The target environment for deploying the API proxy.
+- `environment`: The target environment for deploying the API proxy or shared flow.
 - `proxy`: The name of the API proxy.
+- `sharedFlow`: The name of the shared flow.
 
 ### Command Line Usage
 
-You can also use the `apigee-deploy` package from the command line. The command should follow this structure:
+You can also use the `apigee-deploy` package from the command line. The command should follow this structure
+
+To deploy a proxy , use the following command structure:
+```shell
+apigee-deploy [path] -r proxy -t [token] -o [organization] -p [proxy] -e [environment]
+```
+
+To deploy a shared flow, use the following command structure:
 
 ```shell
-apigee-deploy [path] -r [resource] -t [token] -o [organization] -p [proxy] -e [environment]
+apigee-deploy [path] -r sharedflow -t [token] -o [organization] -s [sharedFlow] -e [environment]
 ```
 
 Replace the placeholders with the respective values:
 
-- `path`: The path to the API proxy.
-- `resource`: The type of resource to deploy (e.g., "proxy").
+- `path`: The path to the API proxy or shared flow.
+- `resource`: The type of resource to deploy (e.g., "proxy" or "sharedflow").
 - `token`: The access token for Apigee authentication.
 - `organization`: The name of the Apigee organization.
 - `proxy`: The name of the API proxy.
-- `environment`: The target environment for deploying the API proxy.
+- `sharedFlow`: The name of the shared flow.
+- `environment`: The target environment for deploying the API proxy or shared flow.
 
 ## Examples
 
@@ -72,12 +87,17 @@ Replace the placeholders with the respective values:
 const apigee = require("apigee-deploy");
 
 apigee.proxyDeploy('/home/user/Downloads/Apigee-CI-CD', 'token', 'apigee-test', 'default-dev', 'Apigee-CI-CD');
+
+apigee.sharedFlowDeploy('/home/user/apigee/sharedFlows/Apigee-CI-CD-flow', 'token', 'apigeeinternaltesting', 'test', 'Apigee-CI-CD-flow');
 ```
+**NOTE: The KVM operations and API product operations are currently under development and not available in the current version of `apigee-deploy`.**
 
 ### Command Line Usage Example
 
 ```shell
 apigee-deploy /home/user/Downloads/Apigee-CI-CD -r proxy -t token -o apigee-test -p Apigee-CI-CD -e default-dev
+
+apigee-deploy /home/user/apigee/sharedFlows/Apigee-CI-CD-flow -r sharedflow -t token -o apigeeinternaltesting -s Apigee-CI-CD-flow -e test
 ```
 
 ## License
