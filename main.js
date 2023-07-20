@@ -4,6 +4,8 @@ const importApiToApigee = require('./utility/proxy/importApiToApigee');
 const deployProxyRev = require('./utility/proxy/deployProxyRev');
 const importSharedFlowsToApigee = require('./utility/sharedflow/importSharedFlowsToApigee');
 const deploySharedFlowRev = require('./utility/sharedflow/deploySharedFlowRev');
+const convertXmlToJson = require('./utility/KVM/xmlToJsonKVM');
+const createKVM = require('./utility/KVM/createKVM');
 
 function proxyDeploy(path, token, organization, environment, proxy) {
   // Convert folder to zip
@@ -93,6 +95,23 @@ function sharedFlowDeploy(path, token, organization, environment, sharedFlow) {
     });
 }
 
+function kvmUpdateAndCreate(path, token, organization, environment){
+convertXmlToJson(path,(error,data)=>{
+if(error){
+  console.log(error.message);
+}else{
+ 
+const {mapIdentifier,Scope,InitialEntries}=data.KeyValueMapOperations;
+
+createKVM({mapIdentifier,Scope,token,organization,environment}).then((data)=>{
+console.log("ss",data);
+}).catch((err)=>{
+console.log("err",err);
+})
+}
+})
+}
 module.exports = {
-  proxyDeploy,sharedFlowDeploy
+  proxyDeploy,sharedFlowDeploy,kvmUpdateAndCreate
 };
+
